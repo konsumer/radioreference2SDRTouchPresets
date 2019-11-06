@@ -1,0 +1,17 @@
+{
+  "name": "sdrtouch",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "follow-redirects": "^1.9.0",
+    "html-entities": "^1.2.1"
+  },
+  "devDependencies": {
+    "now": "^16.4.4"
+  },
+  "scripts": {
+    "start": "now dev",
+    "deploy": "now"
+  }
+}
