@@ -12,8 +12,6 @@ const get = (url) => new Promise((resolve, reject) => {
   }).on('error', reject)
 })
 
-const getId = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-
 const filters = {
   FM: 30000,
   FMN: 15000,
@@ -31,32 +29,33 @@ const getData = async (zip) => {
   const $ = cheerio.load(await get(`https://www.radioreference.com/apps/db/?action=searchZip&from=db&zip=${zip}`))
   $('table.w1p.rrtable').each((i, table) => {
     const $table = $(table)
-    let t = $table.parent().prev().prev().text().trim()
+    const t = $table.parent().prev().prev().text().trim()
     const headers = $('th', $table).map((i, th) => $(th).text().trim())
     const out = []
     $('tr', $table).each((i, tr) => {
       const row = {}
       $('td', tr).map((i, td) => {
-        row[ headers[i] ] = entities.encode($(td).text().trim())
+        row[headers[i]] = entities.encode($(td).text().trim())
       })
       if (Object.keys(row).length > 0) {
         out.push(row)
       }
     })
-    data[ t ] = out
+    data[t] = out
   })
   delete data['']
   return data
 }
 
 const getFrequencies = async (zip) => {
+  let id = -1
   const data = await getData(zip)
   return (`<?xml version="1.0" encoding="UTF-8"?>
 <sdr_presets version="1">
 ${Object.keys(data).filter(title => title.trim() !== '').map((title, c) => {
-      return `  <category id="${getId()}" name="${title}">\n${data[title].map((row, r) => {
+      return `  <category id="${id++}" name="${title}">\n${data[title].map((row, r) => {
         const freq = parseInt(parseFloat(row.Frequency) * 1000000)
-        return `    <preset id="${getId()}" name="${row.Description.trim()}" freq="${freq}" centfreq="${freq}" offset="0" order="${r + 1}" filter="${filters[row.Mode]}" dem="${dems[row.Mode]}"/>`
+        return `    <preset id="${id++}" name="${row.Description.trim()}" freq="${freq}" centfreq="${freq}" offset="0" order="${r + 1}" filter="${filters[row.Mode]}" dem="${dems[row.Mode]}"/>`
       }).join('\n')}\n  </category>`
     }).join('\n')}
 </sdr_presets>`)
