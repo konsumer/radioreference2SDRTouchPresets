@@ -4,10 +4,10 @@ This will let you make [SDRTouch](https://sdrtouch.com/) presets for a specific 
 
 It is deployed [here](https://sdrtouch.dkonsumer.now.sh)
 
-You can also use it as a library, if you do `npm i radioreference2SDRTouchPresets`:
+You can also use it as a library, if you do `npm i radioreference2sdrtouch`:
 
 ```js
-const { getFrequencies } = require('radioreference2SDRTouchPresets')
+const { getFrequencies } = require('radioreference2sdrtouch')
 
 getFrequencies(process.argv[2]).then(console.log)
 ```

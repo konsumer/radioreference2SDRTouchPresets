@@ -1,5 +1,5 @@
 {
-  "name": "radioreference2SDRTouchPresets",
+  "name": "radioreference2sdrtouch",
   "main": "getFrequencies.s",
   "version": "0.0.1",
   "dependencies": {
