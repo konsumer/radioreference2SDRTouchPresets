@@ -1,6 +1,6 @@
 {
-  "name": "sdrtouch",
-  "private": true,
+  "name": "radioreference2SDRTouchPresets",
+  "main": "getFrequencies.s",
   "version": "0.0.0",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
@@ -13,5 +13,8 @@
   "scripts": {
     "start": "now dev",
     "deploy": "now"
+  },
+  "bin": {
+    "radioreference2SDRTouchPresets": "cli.js"
   }
 }

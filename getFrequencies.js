@@ -48,14 +48,14 @@ const getData = async (zip) => {
 }
 
 const getFrequencies = async (zip) => {
-  let id = -1
+  let id = 0
   const data = await getData(zip)
   return (`<?xml version="1.0" encoding="UTF-8"?>
 <sdr_presets version="1">
 ${Object.keys(data).filter(title => title.trim() !== '').map((title, c) => {
-      return `  <category id="${id++}" name="${title}">\n${data[title].map((row, r) => {
+    return `  <category id="${id++}" name="${title}">\n${data[title].map((row, r) => {
         const freq = parseInt(parseFloat(row.Frequency) * 1000000)
-        return `    <preset id="${id++}" name="${row.Description.trim()}" freq="${freq}" centfreq="${freq}" offset="0" order="${r + 1}" filter="${filters[row.Mode]}" dem="${dems[row.Mode]}"/>`
+        return `    <preset id="${id++}" name="${row.Description.trim()}" freq="${freq}" centfreq="${freq}" offset="0" order="${r + 1}" filter="${filters[row.Mode]}" dem="${dems[row.Mode] || 0}"/>`
       }).join('\n')}\n  </category>`
     }).join('\n')}
 </sdr_presets>`)
