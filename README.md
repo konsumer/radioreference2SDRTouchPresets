@@ -15,5 +15,5 @@ getFrequencies(process.argv[2]).then(console.log)
 and you can use it as a cli:
 
 ```
-npx radioreference2SDRTouchPresets 97239 > SDRTouchPresets.xml
+npx radioreference2sdrtouch 97239 > SDRTouchPresets.xml
 ```
