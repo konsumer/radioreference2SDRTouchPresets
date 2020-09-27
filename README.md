@@ -20,4 +20,4 @@ npx radioreference2sdrtouch 97239 > SDRTouchPresets.xml
 
 ## TODO
 
-* Integrate with [radioreference](https://github.com/konsumer/radioreference)
+* Integrate (or replace) with [radioreference](https://github.com/konsumer/radioreference)
