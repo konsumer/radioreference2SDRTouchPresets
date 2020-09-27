@@ -17,3 +17,7 @@ and you can use it as a cli:
 ```
 npx radioreference2sdrtouch 97239 > SDRTouchPresets.xml
 ```
+
+## TODO
+
+* Integrate with [radioreference](https://github.com/konsumer/radioreference)
